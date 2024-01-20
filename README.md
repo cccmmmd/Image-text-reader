@@ -1,1 +1,1 @@
-# Name-card-recognition
+# Image-text-reader
