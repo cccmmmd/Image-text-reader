@@ -3,32 +3,28 @@
 
 <head>
   <title>Text Recognition Sample</title>
-  <link rel="stylesheet" href="style.css">
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="key.js"></script>
   <script src="main.js"></script>
 </head>
 
 <body>
-
-  <h1>名片辨識</h1>
-  輸入名片圖片網址，然後按下<strong>【Get Info】</strong>按鈕
+  <h1>圖片文字辨識</h1>
+  輸入圖片網址，然後按下<strong>【Get text】</strong>按鈕
   <br><br>
   Image to read:
-  <input type="text" name="inputImage" id="inputImage" value="https://www.koiimage.com.tw/wp-content/uploads/2014/09/IMG_9543-1.jpg" />
-  <button onclick="processImage()">Get Info</button>
+  <input type="text" name="inputImage" id="inputImage" value="https://storage.googleapis.com/www-cheers-com-tw/ckeditor/202209/ckeditor-63205fbde8fbc.png" />
+  <button onclick="processImage()">Get text</button>
   <br><br>
-  <div id="wrapper" style="width:1020px; display:table;">
-    <div id="jsonOutput" style="width:600px; display:table-cell;">
-      Response:
-      <br><br>
-      <textarea id="responseTextArea" class="UIInput" style="width:580px; height:400px;"></textarea>
-    </div>
-    <div id="imageDiv" style="width:420px; display:table-cell;">
+  <input type="file" name="inputImageFile" id="inputImageFile" data-target="file-uploader" accept="image/*">
+  <div id="wrapper">
+    <div id="jsonOutput" style="display:table-cell;">
       Source image:
       <br><br>
-      <img id="sourceImage" width="400" height="250" />
-      <!-- <p id="RecognitionCardNumber">XXXX XXXX XXXX XXXX</p> -->
+      <img id="sourceImage" width="400" />
+    </div>
+    <div id="imageDiv" style="display:table-cell;">
+      <p id="textResult"></p>
     </div>
   </div>
 </body>
