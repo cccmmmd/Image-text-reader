@@ -14,9 +14,8 @@ $(document).ready(function(){
 function processImage(imageO ) {
   document.querySelector("#sourceImage").src = "";
   $('.send').hide();
-  let img = document.createElement("img");
-  img.src = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmx4bTNuemRveHU5bWN1OHl4OW9oMGI0bDB0NjNwc3RtMTFkbzZ1MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oEjI6SIIHBdRxXI40/giphy.gif";
-  $("#textResult").append(img);
+  $("#textResult").html("")
+  $('.loading').show();
     // **********************************************
     // *** Update or verify the following values. ***
     // **********************************************
@@ -124,7 +123,7 @@ function fetchText(operationLocation) {
       }
       let recognitionArray = data.analyzeResult.readResults[0].lines;
       let myNode = document.querySelector("#textResult");
-      $("#textResult").html("");
+      $('.loading').hide();
       for(let x=0; x<recognitionArray.length;x++){
         let myTable = document.createElement("tr");
         myTable.innerHTML = '<td class="text">'+recognitionArray[x].text+'</td>'
@@ -205,18 +204,20 @@ function fetchText(operationLocation) {
 function sendToSheet(){
   let myNode = document.querySelectorAll('tr');
   let oneData = {'id': "INCREMENT"}
-  let passcheck = false;
+  let passcheck = true;
   for (var i = 0; i < myNode.length; i++) {
     let key = myNode[i].querySelector('select').value;
     let value = myNode[i].querySelector('.text').innerText;
     if(key == '') {
       alert('請確認每個資料都已選擇類別！');
+      passcheck = false;
       break;
     }else{
       oneData[key] = value;
     }
   }
-  fetch('https://sheetdb.io/api/v1/6helj6tgbivyp', {
+  if(passcheck){
+    fetch('https://sheetdb.io/api/v1/6helj6tgbivyp', {
       method: 'POST',
       headers: {
           'Accept': 'application/json',
@@ -226,8 +227,14 @@ function sendToSheet(){
           data: oneData
       })
   })
-    .then((response) => alert("記錄成功！"))
-    .then((data) => console.log(data))
-
+    .then((response) => {
+        alert("記錄成功！");
+        $("#textResult").html("");
+        $('.send').hide();
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+  }
 
 }
