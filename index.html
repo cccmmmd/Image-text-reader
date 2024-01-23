@@ -3,33 +3,59 @@
 
 <head>
   <title>Text Recognition Sample</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <script src="key.js"></script>
   <!-- <script src="sheet.js"></script> -->
   <script src="main.js"></script>
+  <style>
+    body {
+      background-color: #F0ECF0;
+    }
+
+    #textResult {
+      tr {
+        height: 40px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <h1>名片線上歸檔</h1>
-  <br />
-  輸入名片網址，然後按下<strong>【擷取文字】</strong>按鈕
-  <br /><br />
-  要讀的名片:
-  <input type="text" name="inputImage" id="inputImage" value="https://www.koiimage.com.tw/wp-content/uploads/2014/09/IMG_9543-1.jpg" />
-  <button onclick="processImage()">擷取文字</button>
-  <br /><br />
-  <input type="file" name="inputImageFile" id="inputImageFile" data-target="file-uploader" accept="image/*">
-  <br /><br />
-  <div>名片圖片:</div>
-  <div id="wrapper" style="display: flex">
-    <div id="jsonOutput" style="align-item: start; margin: 10px 10px 0 0">
-      <img id="sourceImage" width="400" />
+  <div class="container-lg">
+    <h1 class="my-4">名片線上歸檔</h1>
+    <br />
+    <h3>輸入名片網址，然後按下<strong>【擷取文字】</strong>按鈕</h3>
+    <br />
+    <div class="row">
+      <div class="col-6">
+        <label for="exampleFormControlInput1" class="form-label">要讀的名片:</label>
+        <input type="text" name="inputImage" id="inputImage" class="form-control" value="https://www.koiimage.com.tw/wp-content/uploads/2014/09/IMG_9543-1.jpg" />
+      </div>
+      <div class="col-3">
+        <button class="btn btn-primary" onclick="processImage()">擷取文字</button>
+      </div>
     </div>
-    <div id="imageDiv" style="align-item: start; margin: 10px 0">
-      <table id="textResult">
-      </table>
-      <br />
-      <button class="send" style="float: right; display:none" type="button">確認</button>
+    <br />
+    <div class="row">
+      <div class="col-6">
+        <input type="file" name="inputImageFile" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="inputImageFile" data-target="file-uploader" accept="image/*">
+      </div>
+    </div>
+    <br /><br />
+    <div>名片圖片:</div>
+    <div class="row">
+      <div id="jsonOutput" class="col-6">
+        <img id="sourceImage" width="100%" />
+      </div>
+      <div id="imageDiv" class="col-6">
+        <img class="loading" style="display: none;" width="70%" src="https://img.pikbest.com/png-images/20190918/cartoon-snail-loading-loading-gif-animation_2734139.png!bw700" alt="">
+        <table id="textResult">
+        </table>
+        <br />
+        <button class="btn btn-primary send" style="display: none;">確認</button>
+      </div>
     </div>
   </div>
 </body>
