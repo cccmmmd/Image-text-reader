@@ -32,11 +32,11 @@
   <div class="container-lg">
     <h1 class="my-4">名片線上歸檔</h1>
     <hr />
-    <h4>輸入名片網址，然後按下 【擷取文字】 按鈕</h4>
+    <h5>輸入名片網址，然後按下 【擷取文字】 按鈕</h5>
     <br />
     <div class="row">
       <div class="col-6">
-        <label for="exampleFormControlInput1" class="form-label">要讀的名片:</label>
+        <label for="exampleFormControlInput1" class="form-label">線上名片網址:</label>
         <input type="text" name="inputImage" id="inputImage" class="form-control" value="https://www.koiimage.com.tw/wp-content/uploads/2014/09/IMG_9543-1.jpg" />
       </div>
       <div class="col-3 d-flex align-items-end">
@@ -46,11 +46,12 @@
     <br />
     <div class="row">
       <div class="col-6">
+        <label for="exampleFormControlInput1" class="form-label">上傳名片照片：</label>
         <input type="file" name="inputImageFile" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="inputImageFile" data-target="file-uploader" accept="image/*">
       </div>
     </div>
     <br /><br />
-    <div>名片預覽:</div>
+    <h5>名片預覽:</h5>
     <div class="row">
       <div id="jsonOutput" class="col-6">
         <img id="sourceImage" width="100%" />

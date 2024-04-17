@@ -196,19 +196,13 @@ function fetchText(operationLocation) {
 function sendToSheet(){
   let myNode = document.querySelectorAll('tr');
   let oneData = {'id': "INCREMENT"}
-  let passcheck = true;
   for (var i = 0; i < myNode.length; i++) {
     let key = myNode[i].querySelector('select').value;
     let value = myNode[i].querySelector('.text').innerText;
-    if(key == '') {
-      alert('請確認每個資料都已選擇類別！');
-      passcheck = false;
-      break;
-    }else{
-      oneData[key] = value;
-    }
+    oneData[key] = value;
+    
   }
-  if(passcheck){
+  
     fetch('https://sheetdb.io/api/v1/6helj6tgbivyp', {
       method: 'POST',
       headers: {
@@ -223,10 +217,11 @@ function sendToSheet(){
         alert("記錄成功！");
         $("#textResult").html("");
         $('.send').hide();
+        $("#inputImageFile").val('')
     })
     .catch((error) => {
         console.log(error)
     })
-  }
+  
 
 }
